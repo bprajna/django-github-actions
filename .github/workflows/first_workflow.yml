@@ -1,0 +1,23 @@
+name: Deployment Workflow
+on:
+  push:
+    branches: [master]
+
+jobs:
+  job_one:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: testing server ssh connection
+      uses: appleboy/ssh-action@master
+      with:
+        host: prajna-github-secrets
+        username: prajna
+        key: ${{ secrets.KEY_PAIR }}
+        port: 22
+        script: |
+          source django_env/bin/activate
+          cd myproject
+          git pull origin master 
+          git status
+          
