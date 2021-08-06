@@ -8,13 +8,15 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: testing server ssh connection
-      uses: appleboy/ssh-action@master
+    - name: install SSH key
+      uses: shimataro/ssh-key-action@v2
       with:
         host: prajna-github-secrets
         username: prajna
-        key: ${{ secrets.KEY_PAIR }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
+     - name: Adding known hosts
+       run: ssh-keyscan -H ${{secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         script: |
           source django_env/bin/activate
           cd myproject
