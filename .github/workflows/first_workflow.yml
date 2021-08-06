@@ -17,9 +17,9 @@ jobs:
         port: 22
     - name: Adding known hosts
       run: ssh-keyscan -H ${{secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-        script: |
-          source django_env/bin/activate
-          cd myproject
-          git pull origin master 
-          git status
+      script: |
+        source django_env/bin/activate
+        cd myproject
+        git pull origin master 
+        git status
           
