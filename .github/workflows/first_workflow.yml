@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: install SSH key
-      uses: shimataro/ssh-key-action@v2
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: prajna
